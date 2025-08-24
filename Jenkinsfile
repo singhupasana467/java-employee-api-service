@@ -18,8 +18,8 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
           bat 'echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin'
-          bat 'docker build -t employee-api-service .'
-          bat 'docker push employee-api-service'
+          bat 'docker build -t techietech/employee-api-service:latest .'
+          bat 'docker push techietech/employee-api-service:latest'
         }
       }
     }
