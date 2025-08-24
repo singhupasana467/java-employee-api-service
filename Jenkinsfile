@@ -11,21 +11,21 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'mvn clean package -DskipTests'
+        bat 'mvn clean package -DskipTests'
       }
     }
     stage('Docker Build & Push') {
       steps {
         withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'techietech', passwordVariable: 'Techie@123')]) {
-          sh 'echo $PASS | docker login -u $USER --password-stdin'
-          sh "docker build -t $IMAGE ."
-          sh "docker push $IMAGE"
+          bat 'echo $PASS | docker login -u $USER --password-stdin'
+          bat "docker build -t $IMAGE ."
+          bat "docker pubat $IMAGE"
         }
       }
     }
     stage('Deploy to Kubernetes') {
       steps {
-        sh 'kubectl apply -f k8s/'
+        bat 'kubectl apply -f k8s/'
       }
     }
   }
