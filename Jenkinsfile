@@ -16,10 +16,10 @@ pipeline {
     }
     stage('Docker Build & Push') {
       steps {
-        withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'techietech', passwordVariable: 'Techie@123')]) {
-          bat 'echo $PASS | docker login -u $USER --password-stdin'
-          bat "docker build -t $IMAGE ."
-          bat "docker pubat $IMAGE"
+        withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+          bat 'echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin'
+          bat 'docker build -t employee-api-service .'
+          bat 'docker push employee-api-service'
         }
       }
     }
