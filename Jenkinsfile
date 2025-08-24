@@ -26,7 +26,7 @@ pipeline {
     }
     stage('Deploy to Kubernetes') {
       steps {
-        bat 'kubectl apply -f k8s/ --kubeconfig=$KUBECONFIG'
+        bat 'kubectl apply -f k8s/ --kubeconfig=%KUBECONFIG%'
       }
     }
   }
