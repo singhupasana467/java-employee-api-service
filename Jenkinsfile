@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    IMAGE = "techietech/employee-api-service"
+    IMAGE = "techietech/employee-api-service:latest"
   }
   stages {
     stage('Checkout') {
