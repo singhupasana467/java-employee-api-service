@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: employee-api-service
-specs:
-  repicas: 2
+spec:
+  replicas: 2
   selector:
     matchLabels:
       app: employee-api-service
@@ -11,7 +11,7 @@ specs:
     metadata:
       labels:
         app: employee-api-service
-    specs:
+    spec:
       containers:
       - name: employee-api-service
         image: techietech/employee-api-service

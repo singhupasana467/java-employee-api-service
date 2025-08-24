@@ -2,6 +2,7 @@ pipeline {
   agent any
   environment {
     IMAGE = "techietech/employee-api-service:latest"
+    KUBECONFIG = 'C:/Users/timbe/.kube/config'
   }
   stages {
     stage('Checkout') {
@@ -25,7 +26,7 @@ pipeline {
     }
     stage('Deploy to Kubernetes') {
       steps {
-        bat 'kubectl apply -f k8s/'
+        bat 'kubectl apply -f k8s/ --kubeconfig=$KUBECONFIG'
       }
     }
   }
