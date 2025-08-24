@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git 'https://github.com/singhupasana467/java-employee-api-service.git'
+        git branch: 'main', url: 'https://github.com/singhupasana467/java-employee-api-service.git'
       }
     }
     stage('Build') {
