@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-api-service
+specs:
+  repicas: 2
+  selector:
+    matchLabels:
+      app: employee-api-service
+  template:
+    metadata:
+      labels:
+        app: employee-api-service
+    specs:
+      containers:
+      - name: employee-api-service
+        image: techietech/employee-api-service
+        ports:
+        - containerPort: 8080
