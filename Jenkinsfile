@@ -4,6 +4,7 @@ pipeline {
     IMAGE = "techietech/employee-api-service:latest"
     KUBECONFIG = "C:/Users/timbe/.kube/config"
     TERRAFORM_DIR = "terraform-employee-api"
+    DEPLOYMENT_NAME = "employee-api-service"
   }
   stages {
     stage('Checkout') {
@@ -31,6 +32,14 @@ pipeline {
           bat 'terraform init'
           bat 'terraform apply -auto-approve'
         }
+      }
+    }
+    stage('Wait and cleanup'){
+      steps{
+        echo "Waiting 15 mins before the cleanup. . ."
+        sleep time: 15, unit: 'MINUTES'
+        echo "Deleting Kubernetes Deployment"
+        bat "kubectl delete deployment %DEPLOYMENT_NAME% --namespace=%NAMESPACE% --kubeconfig=%KUBECONFIG%"
       }
     }
   }
