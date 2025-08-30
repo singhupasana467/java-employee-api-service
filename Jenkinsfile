@@ -1,10 +1,16 @@
 pipeline {
   agent any
+
+  triggers {
+  githubPush()
+  }
+
   environment {
     IMAGE = "techietech/employee-api-service:latest"
     KUBECONFIG = "C:/Users/timbe/.kube/config"
     TERRAFORM_DIR = "terraform-employee-api"
     DEPLOYMENT_NAME = "employee-api-service"
+    NAMESPACE = "employee-api"
   }
   stages {
     stage('Checkout') {
