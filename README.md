@@ -130,6 +130,7 @@ To gracefully stop and remove the application from your Kubernetes cluster:
 - Kubernetes manifests apply successfully  
 - Service accessible via port-forward or NodePort  
 - Deployment can be stopped with `kubectl delete`
+  
 
 ---
 
